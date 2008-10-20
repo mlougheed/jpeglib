@@ -50,12 +50,8 @@ public class JpegPicture {
 			header[0] = (byte) 0xFF;
 			header[1] = (byte) 0xD8;
 
-			
 			outStream.write(header);
 			writeSegment(JpegSegmentReader.SEGMENT_APP0, outStream);
-			writeSegment(JpegSegmentReader.SEGMENT_DQT, outStream);
-			writeSegment(JpegSegmentReader.SEGMENT_DHT, outStream);
-			writeSegment(JpegSegmentReader.SEGMENT_SOF0, outStream);
 			writeSegment(JpegSegmentReader.SEGMENT_APP1, outStream);
 			writeSegment(JpegSegmentReader.SEGMENT_APP2, outStream);
 			writeSegment(JpegSegmentReader.SEGMENT_APP3, outStream);
@@ -71,8 +67,11 @@ public class JpegPicture {
 			writeSegment(JpegSegmentReader.SEGMENT_APPD, outStream);
 			writeSegment(JpegSegmentReader.SEGMENT_APPE, outStream);
 			writeSegment(JpegSegmentReader.SEGMENT_APPF, outStream);
+			writeSegment(JpegSegmentReader.SEGMENT_DQT, outStream);
+			writeSegment(JpegSegmentReader.SEGMENT_DHT, outStream);
+			writeSegment(JpegSegmentReader.SEGMENT_SOF0, outStream);
 			writeSegment(JpegSegmentReader.SEGMENT_SOS, outStream);
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -123,7 +122,8 @@ public class JpegPicture {
 			}
 		}
 	}
-	public byte[] getXMPdata(){
+
+	public byte[] getXMPdata() {
 		return segmentData.getSegment(JpegSegmentReader.SEGMENT_APP1, 1);
 	}
 }
